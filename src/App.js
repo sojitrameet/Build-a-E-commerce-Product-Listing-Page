@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import './App.css';
-import { FaShoppingCart, FaTrashAlt } from 'react-icons/fa';
+import { FaArrowRight, FaArrowUp, FaFacebookF, FaInstagram, FaLinkedinIn, FaShoppingCart, FaTrashAlt } from 'react-icons/fa';
+import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
+import { FaXTwitter } from "react-icons/fa6";
 
 function App() {
   const [display, setDisplay] = useState([]);
@@ -53,7 +55,9 @@ function App() {
       {/* Navbar */}
       <nav className="bg-white shadow-md sticky top-0 z-50">
         <div className="container mb-2 mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-blue-600">MyShop</div>
+          <div className="flex items-center">
+            <img src={require('./logo2.svg').default} alt="Logo" />
+          </div>
           <ul className="flex space-x-6 text-gray-700 font-medium">
             <li className="hover:text-blue-600 cursor-pointer">Home</li>
             <li className="hover:text-blue-600 cursor-pointer">About</li>
@@ -61,11 +65,14 @@ function App() {
             <li className="hover:text-blue-600 cursor-pointer">Login</li>
 
           </ul>
-          <FaShoppingCart
-            className={`text-3xl cursor-pointer transition-opacity duration-300 ${iconClicked ? 'opacity-100' : 'opacity-50'
-              }`}
+          <button
             onClick={handleCartClick}
-          />
+            className={`flex items-center space-x-2  bg-blue-700  text-white px-3 py-2 rounded-md transition-opacity duration-300 ${iconClicked ? 'opacity-100' : 'opacity-70'}`}
+          >
+            <span>View Cart</span>
+            <FaShoppingCart className="text-xl" />
+          </button>
+
           {cart.length > 0 && (
             <span className="absolute top-2 right-2 bg-red-500 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
               {cart.reduce((total, product) => total + product.quantity, 0)}
@@ -196,6 +203,94 @@ function App() {
           ))}
         </div>
       </div>
+      {/* Footer */}
+      <section >
+              <footer className="bg-white text-black pt-10 pb-4 px-6 md:px-16 border-t">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        {/* Business Contact */}
+        <div className="space-y-4">
+          <h2 className="text-lg font-bold">Business Contact</h2>
+          <div className="flex items-start gap-2">
+            <MdLocationOn className="text-xl mt-1" />
+            <p>123 Yarran st, Punchbowl, NSW 2196, Australia</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <MdPhone className="text-xl" />
+            <p>(64) 8342 1245</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <MdEmail className="text-xl" />
+            <p>support@example.com</p>
+          </div>
+          <a href="#" className="underline text-sm mt-2 inline-block">
+            Get direction →
+          </a>
+        </div>
+
+        {/* Subscribe Newsletter */}
+        <div className="md:col-span-1 lg:col-span-2 space-y-4">
+          <h2 className="text-lg font-bold">Subscribe Newsletter</h2>
+          <p className="text-sm text-gray-600">
+            We invite you to register to read the latest news, offers and events about our company. We promise not spam your inbox.
+          </p>
+          <div className="flex items-center max-w-md">
+            <input
+              type="email"
+              placeholder="Enter your e-mail..."
+              className="flex-1 px-4 py-2 rounded-l-full border border-gray-300 focus:outline-none"
+            />
+            <button className="bg-black text-white p-3 rounded-r-full">
+              <FaArrowRight />
+            </button>
+          </div>
+        </div>
+
+        {/* About Us */}
+       <div>
+  <h2 className="text-lg font-bold">About Us</h2>
+  <ul className="mt-3 space-y-2 text-sm text-gray-600">
+    <li><a href="#" className="hover:text-blue-600">About Us</a></li>
+    <li><a href="#" className="hover:text-blue-600">Contact Us</a></li>
+    <li><a href="#" className="hover:text-blue-600">Our Store</a></li>
+    <li><a href="#" className="hover:text-blue-600">Our Story</a></li>
+  </ul>
+</div>
+
+{/* Resource */}
+<div>
+  <h2 className="text-lg font-bold">Resource</h2>
+  <ul className="mt-3 space-y-2 text-sm text-gray-600">
+    <li><a href="#" className="hover:text-blue-600">Privacy Policies</a></li>
+    <li><a href="#" className="hover:text-blue-600">Terms & Conditions</a></li>
+    <li><a href="#" className="hover:text-blue-600">Returns & Refunds</a></li>
+    <li><a href="#" className="hover:text-blue-600">FAQ’s</a></li>
+    <li><a href="#" className="hover:text-blue-600">Shipping</a></li>
+  </ul>
+</div>
+
+      </div>
+
+      {/* Social Icons */}
+      <div className="mt-10 flex justify-center md:justify-end gap-4">
+        {[FaFacebookF, FaInstagram, FaLinkedinIn, FaXTwitter].map((Icon, idx) => (
+          <button key={idx} className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-gray-100">
+            <Icon className="text-lg" />
+          </button>
+        ))}
+      </div>
+
+     
+     
+
+      {/* Scroll to Top */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-5 right-5 w-10 h-10 border rounded flex items-center justify-center shadow hover:bg-gray-200 bg-white"
+      >
+        <FaArrowUp />
+      </button>
+    </footer>
+      </section>
     </div>
   );
 }
